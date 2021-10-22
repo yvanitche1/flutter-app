@@ -69,8 +69,10 @@ class MyApp extends StatelessWidget {
     // );
 
     return MaterialApp(
+      title: 'Easy Food',
+      initialRoute: '/',
+      onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -81,9 +83,46 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.red,
       ),
-      home: RecipeListScreen(),
+      // home: RecipeListScreen(),
     );
+  }
+}
+
+class RouteGenerator {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (context) => RecipeListScreen());
+      case '/recipe':
+        return PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                RecipeScreen(recipe: settings.arguments),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              animation =
+                  CurvedAnimation(curve: Curves.ease, parent: animation);
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+              // var begin = Offset(1.1, 1.1);
+              // var end = Offset.zero;
+              // var curve = Curves.ease;
+              // var tween = Tween(begin: begin, end: end)
+              //     .chain(CurveTween(curve: curve));
+              // return SlideTransition(
+              //   position: animation.drive(tween),
+              //   child: child,
+              // );
+            });
+      default:
+        return MaterialPageRoute(
+            builder: (context) => Scaffold(
+                  appBar: AppBar(title: Text("Error"), centerTitle: true),
+                  body: Center(child: Text("Page found")),
+                ));
+    }
   }
 }

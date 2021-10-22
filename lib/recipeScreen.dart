@@ -71,24 +71,24 @@ class RecipeScreen extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: 600,
-                  height: 240,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: recipe.imgUrl,
-                  width: 600,
-                  height: 300,
-                  fit: BoxFit.cover,
-                ),
-              ],
+            Hero(
+              tag: "imageRecipe" + recipe.title,
+              child: FadeInImage.assetNetwork(
+                placeholder: "images/loader.gif",
+                image: recipe.imgUrl,
+                width: 600,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
             ),
+
+            // FadeInImage.assetNetwork(
+            //   placeholder: "images/loader.gif",
+            //   image: recipe.imgUrl,
+            //   width: 600,
+            //   height: 300,
+            //   fit: BoxFit.cover,
+            // ),
             titlesection,
             buttomsection,
             descriptionsection

@@ -15,73 +15,73 @@ class RecipeListScreenState extends State<RecipeListScreen> {
     Recipe(
         "Pizza facile",
         "Par David Silva",
-        "images/emin.jpg",
+        "https://assets.afcdn.com/recipe/20200206/107152_w768h583c1cx176cy267cxb353cyb535.webp",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
         86),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/koki.jpg",
+        "Burgger facile",
+        "Par Djila Silva",
+        "https://106fyz3cd4vi2lc2uq1tlyl4-wpengine.netdna-ssl.com/wp-content/uploads/2020/09/Moist-Chicken-Burgers.jpg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        88),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/emin.jpg",
+        "Kfc facile",
+        "Par Nguiemegni Silva",
+        "https://www.kfc-suisse.ch/fileadmin/media/images/Produkte/Buckets/kfc_thumb_buckets_filet.png",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        8),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/koki.jpg",
+        "MacDo facile",
+        "Par Raye Silva",
+        "https://bodyquick.es/wp-content/uploads/2016/09/cheat-meal.jpg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        36),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/emin.jpg",
+        "Poulet facile",
+        "Par Macdo Silva",
+        "https://t1.uc.ltmcdn.com/fr/images/8/2/3/img_comment_faire_du_poulet_frit_6328_600.jpg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        35),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/koki.jpg",
+        "Jus de fruit facile",
+        "Par Edmond edward",
+        "https://www.mesjusdefruits.fr/wp-content/uploads/2019/10/difference-pur-jus-et-concentre.jpg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        874),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/emin.jpg",
+        "Coca facile",
+        "Par Silver Ken",
+        "https://st.depositphotos.com/1364913/1200/i/950/depositphotos_12004559-stock-photo-coca-cola-can-with-cola.jpg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        265),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/koki.jpg",
+        "Porc facile",
+        "Par Sandes Solven",
+        "https://assets.afcdn.com/recipe/20141111/3746_w768h583c1cx429cy285.webp",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        886),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/emin.jpg",
+        "Vin rouge facile",
+        "Par Vincent Silvera",
+        "https://www.levinaletrier.com/wp-content/uploads/2020/11/DANNOT.jpg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        45),
     Recipe(
-        "Pizza facile",
-        "Par David Silva",
-        "images/koki.jpg",
+        "Boeuf bourguignon",
+        "Par Kolibri",
+        "https://img.cuisineaz.com/660x660/2017/04/22/i125144-.jpeg",
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit corporis, corrupti, aperiam, modi sit ullam ab labore eos dolore hic error deserunt? Laudantium dolore quam eum voluptates est animi laboriosam!",
         false,
-        86),
+        6),
   ];
   @override
   Widget build(BuildContext context) {
@@ -124,29 +124,23 @@ class RecipeItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  RecipeScreen(recipe: recipe),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                var begin = Offset(0.0, 1.0);
-                var end = Offset.zero;
-                var tween = Tween(begin: begin, end: end);
-                return SlideTransition(
-                  position: animation.drive(tween),
-                  child: child,
-                );
-              }),
+          '/recipe',
+          arguments: recipe,
         );
       },
       child: Card(
         margin: EdgeInsets.all(8),
         elevation: 7,
         child: Row(children: [
-          Image.asset(recipe.imgUrl,
-              height: 100, width: 100, fit: BoxFit.cover),
+          // CacheNetworkImage(imageUrl:recipe.imgUrl, Placeholder:(context, url)=> Center(child: CircularProgressIndicator()),
+          // ErrorWidget: (context, url, error)=> Icon(Icons.error),width),
+          Hero(
+            tag: "imageRecipe" + recipe.title,
+            child: Image.network(recipe.imgUrl,
+                height: 100, width: 100, fit: BoxFit.cover),
+          ),
           Padding(
             padding: EdgeInsets.all(10),
             child: Column(
