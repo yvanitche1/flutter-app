@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/favoriteChangeNotifier.dart';
 import 'package:flutter_application_1/favoriteWidget.dart';
 import 'package:flutter_application_1/recipe.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class RecipeScreen extends StatelessWidget {
@@ -59,41 +61,47 @@ class RecipeScreen extends StatelessWidget {
         ),
       ),
     );
-    return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(
-            "Mes recettes",
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-        ),
-        body: ListView(
-          children: [
-            Hero(
-              tag: "imageRecipe" + recipe.title,
-              child: FadeInImage.assetNetwork(
-                placeholder: "images/loader.gif",
-                image: recipe.imgUrl,
-                width: 600,
-                height: 300,
-                fit: BoxFit.cover,
-              ),
+    return ChangeNotifierProvider(
+      create: (context) =>
+          FavoriteChangeNotifier(recipe.isFavorite, recipe.favoriteCounter),
+      child: Scaffold(
+          appBar: AppBar(
+            // Here we take the value from the MyHomePage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            title: Text(
+              "Mes recettes",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25),
             ),
+          ),
+          body: ListView(
+            children: [
+              Hero(
+                tag: "imageRecipe" + recipe.title,
+                child: FadeInImage.assetNetwork(
+                  placeholder: "images/loader.gif",
+                  image: recipe.imgUrl,
+                  width: 600,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
+              ),
 
-            // FadeInImage.assetNetwork(
-            //   placeholder: "images/loader.gif",
-            //   image: recipe.imgUrl,
-            //   width: 600,
-            //   height: 300,
-            //   fit: BoxFit.cover,
-            // ),
-            titlesection,
-            buttomsection,
-            descriptionsection
-          ],
-        ));
+              // FadeInImage.assetNetwork(
+              //   placeholder: "images/loader.gif",
+              //   image: recipe.imgUrl,
+              //   width: 600,
+              //   height: 300,
+              //   fit: BoxFit.cover,
+              // ),
+              titlesection,
+              buttomsection,
+              descriptionsection
+            ],
+          )),
+    );
   }
 
   Column _buildButtonColumn(Color color, IconData icon, String label) {

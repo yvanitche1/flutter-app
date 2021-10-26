@@ -1,50 +1,43 @@
 import 'package:flutter/material.dart';
 
-class FavoriteWidget extends StatefulWidget {
-  final bool isFavorited;
-  final int favoriteCount;
-
-  const FavoriteWidget(
-      {Key key, @required this.isFavorited, this.favoriteCount})
-      : super(key: key);
-  _FavoriteWidgetState createState() =>
-      _FavoriteWidgetState(this.isFavorited, this.favoriteCount);
+class FavoriteIconWidget extends StatefulWidget {
+  _FavoriteIconWidgetState createState() => _FavoriteIconWidgetState();
 }
 
-class _FavoriteWidgetState extends State<FavoriteWidget> {
+class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   bool _isFavorite;
-  int _favoriteCount;
-
-  _FavoriteWidgetState(this._isFavorite, this._favoriteCount);
 
   void _toggleFavorite() {
     setState(() {
       if (_isFavorite) {
         _isFavorite = false;
-        _favoriteCount -= 1;
       } else {
         _isFavorite = true;
-        _favoriteCount += 1;
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          icon:
-              _isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-          color: Colors.red,
-          iconSize: 30,
-          onPressed: _toggleFavorite,
-        ),
-        Text(
-          "$_favoriteCount",
-          style: TextStyle(fontSize: 15),
-        ),
-      ],
+    return IconButton(
+      icon: _isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+      color: Colors.red,
+      iconSize: 30,
+      onPressed: _toggleFavorite,
+    );
+  }
+}
+
+class FavoriteTextWidget extends StatefulWidget {
+  _FavoriteTextWidgetState createState() => _FavoriteTextWidgetState();
+}
+
+class _FavoriteTextWidgetState extends State<FavoriteTextWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "$_favoriteCount",
+      style: TextStyle(fontSize: 15),
     );
   }
 }
